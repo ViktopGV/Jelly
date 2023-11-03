@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee12c145a26f544a84981dc82b9f246, type: 3}
+  m_Name: RU
+  m_EditorClassIdentifier: 
+  Dictionary:
+  - Key: FREE_TEXT
+    Value: "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E"
+  - Key: INCREASE_SPEED
+    Value: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0442\u044C \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C"
+  - Key: INCREASE_TIME
+    Value: "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C 10 \u0441\u0435\u043A\u0443\u043D\u0434"
+  - Key: PROGRESS
+    Value: "\u041F\u0440\u043E\u0433\u0440\u0435\u0441\u0441"
+  - Key: SKIN_SELECTED
+    Value: "\u0412\u044B\u0431\u0440\u0430\u043D"
+  - Key: COINS_EARN
+    Value: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u043D\u043E \u043C\u043E\u043D\u0435\u0442"
+  - Key: TIME_OUT
+    Value: "\u0412\u0440\u0435\u043C\u044F \u0432\u044B\u0448\u043B\u043E"
+  - Key: MENU
+    Value: "\u041C\u0435\u043D\u044E"
+  - Key: REPLAY
+    Value: "\u041F\u043E\u0432\u0442\u043E\u0440"
+  - Key: BUY_TEXT
+    Value: "\u041A\u0443\u043F\u0438\u0442\u044C"
+  - Key: TAP_START
+    Value: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435, \u0447\u0442\u043E\u0431\u044B
+      \u043D\u0430\u0447\u0430\u0442\u044C"
+  - Key: LEVEL_COMPLETED
+    Value: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u043E\u0447\u0438\u0449\u0435\u043D"
