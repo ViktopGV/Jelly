@@ -5,11 +5,11 @@ public class AnyButtonWaiter : MonoBehaviour
 {
     public event Action Clicked;
     void Update()
-    {
-        
+    {        
         if (Input.anyKeyDown)
         {
-            Clicked?.Invoke();
+            if(YaAdv.FSAdOpen == false)
+                Clicked?.Invoke();
         }
     }
 }

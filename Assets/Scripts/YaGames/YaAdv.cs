@@ -15,9 +15,7 @@ public class YaAdv : MonoBehaviour
     public static event Action<int> RewardAdClosed;
     public static event Action<string> RewardAdError;
 
-    /// <summary>
     public static bool FSAdOpen = false;
-    /// </summary>
 
 
     [DllImport("__Internal")]
