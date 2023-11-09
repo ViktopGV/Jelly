@@ -50,10 +50,16 @@ public class GameManager : MonoBehaviour
     public void ReplayGame()
     {
         _dataHandler.IsReplay = true;
-        SceneManager.LoadScene(1);        
+        YaAdv.FullscreenAdClosed += ReplayFullscreenAdClosed;
+        YaAdv.ShowFullscreenAdv();
     }
 
-    
+    private void ReplayFullscreenAdClosed(bool obj)
+    {
+        YaAdv.FullscreenAdClosed -= ReplayFullscreenAdClosed;
+        SceneManager.LoadScene(1);
+    }
+
     private void Awake()
     {        
         _dataHandler = FindObjectOfType<DataHandler>();
