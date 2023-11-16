@@ -9,7 +9,9 @@ public class AnyButtonWaiter : MonoBehaviour
         if (Input.anyKeyDown)
         {
             if(YaAdv.FSAdOpen == false)
+            {
                 Clicked?.Invoke();
+            }                
         }
     }
 }

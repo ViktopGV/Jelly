@@ -38,6 +38,7 @@ public class YaAdv : MonoBehaviour
     private void FullscreenAdErrorCallback(string error)
     {
         FullscreenAdError?.Invoke(error);
+
     }
 
     private void FullscreenAdOfflineCallback()
