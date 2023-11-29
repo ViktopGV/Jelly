@@ -37,3 +37,11 @@ MonoBehaviour:
     Value: Tap to start
   - Key: LEVEL_COMPLETED
     Value: Level cleared
+  - Key: MONEY_TUTORIAL
+    Value: by absorbing objects you get coins
+  - Key: IMPROVE_TUTORIAL
+    Value: for coins, you can increase the speed of movement or add time to the timer
+  - Key: GOAL_TUTORIAL
+    Value: 'Task: Clear the level before the timer expires'
+  - Key: COINS_BALANCE
+    Value: total coins

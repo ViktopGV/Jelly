@@ -12,8 +12,9 @@ public class JellyMesh : MonoBehaviour
     private JellyVertex[] jv;
     private Vector3[] vertexArray;
 
-    private void Awake()
+    private void OnEnable()
     {
+        print("Bes");
         originalMesh = GetComponent<MeshFilter>().sharedMesh;
         meshClone = Instantiate(originalMesh);
         GetComponent<MeshFilter>().sharedMesh = meshClone;
@@ -22,6 +23,7 @@ public class JellyMesh : MonoBehaviour
         for (int i = 0; i < meshClone.vertices.Length; ++i)
             jv[i] = new JellyVertex(i, transform.TransformPoint(meshClone.vertices[i]));
     }
+
 
     private void FixedUpdate()
     {

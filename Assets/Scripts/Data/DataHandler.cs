@@ -15,6 +15,12 @@ public class DataHandler : MonoBehaviour
     private PlayerData _data;
     private bool _isDataReady = false;
 
+    public void TutorialHasPassed() 
+    { 
+        _data.TutorialPassed = true;
+        SavePlayerData();
+    }
+
     public void SetActiveSkinId(int id) => _data.ActiveSkinID = id;
     public void AddCoins(int amount)
     {
@@ -56,7 +62,7 @@ public class DataHandler : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 #if UNITY_EDITOR
-        _data = new PlayerData(0, 3, 60, 6, new int[] { 6 }, "en");
+        _data = new PlayerData(0, 3, 60, 6, new int[] { 6 }, "ru", false);
         DataLoaded?.Invoke();
         _isDataReady = true;
 #elif UNITY_WEBGL
@@ -73,7 +79,7 @@ public class DataHandler : MonoBehaviour
         if (obj == "NullValue")
         {
             // 6 - is ID for default skin
-            _data = new PlayerData(0, 3, 60, 6,new int[] { 6 }, YaSDK.GetEnvironment().i18n.lang);
+            _data = new PlayerData(0, 3, 60, 6,new int[] { 6 }, YaSDK.GetEnvironment().i18n.lang, false);
             YaPlayer.SetPlayerData(JsonUtility.ToJson(_data));
         }
         else

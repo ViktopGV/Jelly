@@ -9,8 +9,9 @@ public struct PlayerData
     public int ActiveSkinID;
     public int[] PurchasedSkinsId;
     public string Language;
+    public bool TutorialPassed;
 
-    public PlayerData(int coins, int speed, int seconds, int activeSkinId, int[] skins, string lang)
+    public PlayerData(int coins, int speed, int seconds, int activeSkinId, int[] skins, string lang, bool tutorial)
     {
         Coins = coins;
         Speed = speed;
@@ -18,5 +19,6 @@ public struct PlayerData
         ActiveSkinID = activeSkinId;
         PurchasedSkinsId = skins;
         Language = lang;
+        TutorialPassed = tutorial;
     }
 }

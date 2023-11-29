@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour
     public int Seconds => _seconds;
     public bool IsPause() => _isPause;
 
-    private int _seconds;
+    private int _seconds = 60;
     private bool _isPause = false;
 
     public void StartTimer(int seconds)

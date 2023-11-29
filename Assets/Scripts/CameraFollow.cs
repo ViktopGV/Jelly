@@ -6,6 +6,12 @@ public class CameraFollow : MonoBehaviour
     public Transform _target;
     [SerializeField] private float _smoothSpeed = 0.125f;
 
+    public void SetCameraToTarjetPos()
+    {
+        transform.position = _target.position + _offset * _target.localScale.x;
+        transform.LookAt(_target.position);
+    }
+
     private void LateUpdate()
     {
         Vector3 desiredPosition = _target.position + _offset * _target.localScale.x;

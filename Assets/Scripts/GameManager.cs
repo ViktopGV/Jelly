@@ -15,24 +15,51 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinsTimeOutEarnedText;
     [SerializeField] private TextMeshProUGUI _coinsCompleteLevelEarnedText;
     [SerializeField] private AnyButtonWaiter _anyButtonWaiter;
+    [SerializeField] private TutorialController _tutorialController;
+
     private DataHandler _dataHandler;
     private int _coinsEarned;
     private int _eatableObjectsCount;
     private bool _gameWasPaused = false;
     private bool _gameStarted = false;
+    private bool _gameFinished = false;
 
     public void ToMenu() => SceneManager.LoadScene(1);
 
     public void ShowFullscreenAd() => YaAdv.ShowFullscreenAdv();
     public void StartGame()
     {
-        _coinsEarned = 0;
-        _timer.StartTimer(_dataHandler.PlayerData.TimeSeconds);
-        _menuCanvas.gameObject.SetActive(false);
-        _joystickCanvas.gameObject.SetActive(true);
-        _progressController.ProgressChanged += GameProgressChanged;
-        _playerMovement.enabled = true;
-        _gameStarted= true;
+        if (_dataHandler.PlayerData.TutorialPassed == false)
+        {
+            _tutorialController.TutorialEnd += _tutorialController_TutorialEnd;
+
+            _menuCanvas.gameObject.SetActive(false);
+            _joystickCanvas.gameObject.SetActive(true);
+            //_timer.StartTimer(_dataHandler.PlayerData.TimeSeconds);
+            
+
+            _tutorialController.StartTutorial();
+            //_timer.SetPause(true);
+        }
+        else
+        {
+            _coinsEarned = 0;
+            _timer.StartTimer(_dataHandler.PlayerData.TimeSeconds);
+            _menuCanvas.gameObject.SetActive(false);
+            _joystickCanvas.gameObject.SetActive(true);
+            _progressController.ProgressChanged += GameProgressChanged;
+            _playerMovement.enabled = true;
+            _gameStarted = true;
+        }
+    }
+
+    private void _tutorialController_TutorialEnd()
+    {
+        _dataHandler.TutorialHasPassed();
+        _timer.SetPause(false);
+        _anyButtonWaiter.gameObject.SetActive(true);
+
+        //StartGame();
     }
 
     public void GameCompleted()
@@ -44,6 +71,7 @@ public class GameManager : MonoBehaviour
         _coinsCompleteLevelEarnedText.text = _coinsEarned.ToString();
         _playerMovement.enabled = false;
         _dataHandler.IsReplay = false;
+        _gameFinished = true;
         _timer.SetPause(true);
     }
 
@@ -74,6 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void _anyButtonWaiter_Clicked()
     {
+        if (_gameFinished == true) return;
         _playerMovement.enabled = true;
         _anyButtonWaiter.gameObject.SetActive(false);
         if (_gameWasPaused)
@@ -116,6 +145,7 @@ public class GameManager : MonoBehaviour
         _coinsTimeOutEarnedText.text = _coinsEarned.ToString();
         _playerMovement.enabled = false;
         _dataHandler.IsReplay = false;
+        _gameFinished = true;
     }
 
     private void InitPlayer()
@@ -133,7 +163,7 @@ public class GameManager : MonoBehaviour
     private void OnApplicationFocus(bool focus)
     {
         //This is necessary because the timer does not stop when switching tabs
-        if (_gameWasPaused == false)
+        if (_gameWasPaused == false && _gameFinished == false)
         {
             _timer.SetPause(!focus);
             if (_timer.IsPause() && _gameStarted)

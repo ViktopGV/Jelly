@@ -1,9 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 
 public class SpeedIncreaser : MonoBehaviour
 {
+    public event Action PriceUpdated;
+
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private int _startPrice;
@@ -25,7 +28,8 @@ public class SpeedIncreaser : MonoBehaviour
 
     private void SuccessfullyRewarded(int obj)
     {
-        Improve(true);
+        if(obj == 1)
+            Improve(true);
     }
 
     private void OnDisable()
@@ -35,9 +39,11 @@ public class SpeedIncreaser : MonoBehaviour
 
     }
 
+    public int GetPrice() => _data.PlayerData.Speed * _startPrice;
+
     public bool HasMoney()
     {
-        int price = _data.PlayerData.Speed * _startPrice;
+        int price = GetPrice();
         if (_data.PlayerData.Coins >= price) return true;
         else return false;
     }
@@ -55,7 +61,7 @@ public class SpeedIncreaser : MonoBehaviour
             _freeContainer.SetActive(true);
             _priceContainer.SetActive(false);
         }
-        
+        PriceUpdated?.Invoke();
     }
 
     public void Improve(bool isReward)
@@ -81,6 +87,4 @@ public class SpeedIncreaser : MonoBehaviour
             YaAdv.ShowRewardAd(1);
         }
     }
-
-
 }

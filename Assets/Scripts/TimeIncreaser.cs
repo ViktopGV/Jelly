@@ -1,8 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class TimeIncreaser : MonoBehaviour
 {
+    public event Action PriceUpdated;
+
     [SerializeField] private int _startPrice;
     [SerializeField] private TextMeshProUGUI _priceText;
     [SerializeField] private GameObject _priceContainer;
@@ -24,7 +27,8 @@ public class TimeIncreaser : MonoBehaviour
 
     private void SuccessfullyRewarded(int obj)
     {
-        Improve(true);
+        if(obj == 0)
+            Improve(true);
     }
 
     private void OnDisable()
@@ -33,9 +37,12 @@ public class TimeIncreaser : MonoBehaviour
         YaAdv.AdRewarded -= SuccessfullyRewarded;
 
     }
+
+    public int GetPrice() => _data.PlayerData.TimeSeconds * _startPrice;
+
     public bool HasMoney()
     {
-        int price = _data.PlayerData.TimeSeconds * _startPrice;
+        int price = GetPrice();
         if (_data.PlayerData.Coins >= price) return true;
         else return false;
     }
@@ -53,6 +60,7 @@ public class TimeIncreaser : MonoBehaviour
             _freeContainer.SetActive(true);
             _priceContainer.SetActive(false);
         }
+        PriceUpdated?.Invoke();
     }
 
     public void Improve(bool isReward)
