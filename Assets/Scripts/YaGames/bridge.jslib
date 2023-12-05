@@ -4,6 +4,10 @@ mergeInto(LibraryManager.library, {
         sdkInitialize();
     },
 
+    LoadingApiReady: function(){
+        loadingApiReady();  
+    },
+
     ShowFullscreenAdv: function() {
         showFullscreenAdv();
     },

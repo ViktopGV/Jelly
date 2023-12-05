@@ -22,7 +22,7 @@ public class TutorialController : MonoBehaviour
     {
         TimerTutorialPanel.SetActive(true);
         TimerTutorialArrow.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
         TimerTutorialPanel.SetActive(false);
         TimerTutorialArrow.SetActive(false);
         StartCoroutine(MoneyTutorial());
@@ -41,7 +41,7 @@ public class TutorialController : MonoBehaviour
     IEnumerator ImproveTutorial()
     {
         ImproveTutorialPanel.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
         ImproveTutorialPanel.SetActive(false);
         TutorialEnd?.Invoke();
     }

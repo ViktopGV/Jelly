@@ -22,6 +22,8 @@ public class YaSDK : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SDKInitialize();
     [DllImport("__Internal")]
+    public static extern void LoadingApiReady();
+    [DllImport("__Internal")]
     public static extern void SetData(string key, string value);
     [DllImport("__Internal")]
     public static extern string GetData(string key);

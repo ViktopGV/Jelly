@@ -16,6 +16,7 @@ public class Bootstrapper : MonoBehaviour
     private void _dataHandler_DataLoaded()
     {
         SceneManager.LoadScene(1);
+        YaSDK.LoadingApiReady();
     }
 
     private void OnDisable()

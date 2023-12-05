@@ -4,9 +4,6 @@ document.head.appendChild(script);
 
 function sdkInitialize(){
     try {
-
-    
-
     YaGames
     .init()
     .then(ysdk => {
@@ -19,13 +16,18 @@ function sdkInitialize(){
                 console.error("Режим инкогнито");
             }
         });
-        ysdk.features.LoadingAPI?.ready();
+        //ysdk.features.LoadingAPI?.ready();
         Module.SendMessage("YaGamesSDK", "SDKInitializedCallback");
     });   
 }
 catch {
     setTimeout(sdkInitialize, 200);
 }     
+}
+
+function loadingApiReady() {
+    ysdk.features.LoadingAPI?.ready();
+
 }
 
 function setToSafeStorage(key, value) {
